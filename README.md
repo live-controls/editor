@@ -11,3 +11,7 @@ composer require live-controls/editor;
 ```
 php artisan livecontrols-editor:install;
 ```
+
+2.1) Add vite reference to layout:
+- Open layout file (ex. layouts/app.blade.php)
+- Add to @vite(['resources/css/app.css', **'resources/js/lseditor.js'**, 'resources/js/app.js'])
