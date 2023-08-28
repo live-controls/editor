@@ -20,6 +20,18 @@
                                 }
                             },
                         @endif
+                        @if(in_array('quote', $tools))
+                            quote: EditorJSQuote,
+                        @endif
+                        @if(in_array('warning', $tools))
+                            warning: EditorJSWarning,
+                        @endif
+                        @if(in_array('delimiter', $tools))
+                            delimiter: EditorJSDelimiter,
+                        @endif
+                        @if(in_array('alert', $tools))
+                            alert: EditorJSAlert,
+                        @endif
                     }
                 @endif
             });

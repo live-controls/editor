@@ -26,6 +26,18 @@ class InstallTool extends Command
             case 'header':
                 $this->installHeader();
                 break;
+            case 'quote':
+                $this->installQuote();
+                break;
+            case 'warning':
+                $this->installWarning();
+                break;
+            case 'delimiter':
+                $this->installDelimiter();
+                break;
+            case 'alert':
+                $this->installAlert();
+                break;
             default:
                 # code...
                 break;
@@ -75,7 +87,7 @@ class InstallTool extends Command
 
         $this->CopyAndBuild();
 
-        $this->info('Done... Use \'tools\' => [\'paragraph\' => \'window.EditorJSParagraph\'] to add Tool.');
+        $this->info('Done... Use \'tools\' => [\'paragraph\'] to add Tool.');
     }
 
     private function installHeader()
@@ -103,6 +115,118 @@ class InstallTool extends Command
 
         $this->CopyAndBuild();
 
-        $this->info('Done... Use \'tools\' => [\'header\' => \'window.EditorJSHeader\'] to add Tool.');
+        $this->info('Done... Use \'tools\' => [\'header\'] to add Tool.');
+    }
+
+    private function installQuote()
+    {
+        //Install NPM Package
+        $this->info('Trying to install quote package...');
+        if(shell_exec('npm i @editorjs/quote --save') === null)
+        {
+            $this->warn("Couldn't install quote package... Please manually install it!");
+            return;
+        }
+        $this->info("Quote package installed!");
+
+        //Include module in lseditor.js file 
+        $this->info("Trying to add package to lseditor.js");
+        $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
+        if(str_contains($fContent, "@editorjs/quote")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSQuote from '@editorjs/quote';\nwindow.EditorJSQuote = EditorJSQuote;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
+
+        $this->CopyAndBuild();
+
+        $this->info('Done... Use \'tools\' => [\'quote\'] to add Tool.');
+    }
+
+    private function installWarning()
+    {
+        //Install NPM Package
+        $this->info('Trying to install warning package...');
+        if(shell_exec('npm i @editorjs/warning --save') === null)
+        {
+            $this->warn("Couldn't install warning package... Please manually install it!");
+            return;
+        }
+        $this->info("Warning package installed!");
+
+        //Include module in lseditor.js file 
+        $this->info("Trying to add package to lseditor.js");
+        $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
+        if(str_contains($fContent, "@editorjs/warning")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSWarning from '@editorjs/warning';\nwindow.EditorJSWarning = EditorJSWarning;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
+
+        $this->CopyAndBuild();
+
+        $this->info('Done... Use \'tools\' => [\'warning\'] to add Tool.');
+    }
+
+    private function installDelimiter()
+    {
+        //Install NPM Package
+        $this->info('Trying to install delimiter package...');
+        if(shell_exec('npm i @editorjs/delimiter --save') === null)
+        {
+            $this->warn("Couldn't install delimiter package... Please manually install it!");
+            return;
+        }
+        $this->info("Delimiter package installed!");
+
+        //Include module in lseditor.js file 
+        $this->info("Trying to add package to lseditor.js");
+        $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
+        if(str_contains($fContent, "@editorjs/delimiter")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSDelimiter from '@editorjs/delimiter';\nwindow.EditorJSDelimiter = EditorJSDelimiter;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
+
+        $this->CopyAndBuild();
+
+        $this->info('Done... Use \'tools\' => [\'delimiter\'] to add Tool.');
+    }
+
+    private function installAlert()
+    {
+        //Install NPM Package
+        $this->info('Trying to install alert package...');
+        if(shell_exec('npm i @editorjs/alert --save') === null)
+        {
+            $this->warn("Couldn't install alert package... Please manually install it!");
+            return;
+        }
+        $this->info("Alert package installed!");
+
+        //Include module in lseditor.js file 
+        $this->info("Trying to add package to lseditor.js");
+        $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
+        if(str_contains($fContent, "@editorjs/alert")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSAlert from '@editorjs/alert';\nwindow.EditorJSAlert = EditorJSAlert;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
+
+        $this->CopyAndBuild();
+
+        $this->info('Done... Use \'tools\' => [\'alert\'] to add Tool.');
     }
 }
