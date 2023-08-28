@@ -64,13 +64,18 @@ class InstallTool extends Command
         //Include module in lseditor.js file 
         $this->info("Trying to add package to lseditor.js");
         $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
-        $fContent = "import EditorJSParagraph from '@editorjs/paragraph';\nwindow.EditorJSParagraph = EditorJSParagraph;\n".$fContent;
-        file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
-        $this->info("Package added to lseditor.js!");
+        if(str_contains($fContent, "@editorjs/paragraph")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSParagraph from '@editorjs/paragraph';\nwindow.EditorJSParagraph = EditorJSParagraph;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
 
         $this->CopyAndBuild();
 
-        $this->info('Done... Use \'tools\' => [\'paragraph\' => \'EditorJSParagraph\'] to add Tool.');
+        $this->info('Done... Use \'tools\' => [\'paragraph\' => \'window.EditorJSParagraph\'] to add Tool.');
     }
 
     private function installHeader()
@@ -87,11 +92,17 @@ class InstallTool extends Command
         //Include module in lseditor.js file 
         $this->info("Trying to add package to lseditor.js");
         $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
-        $fContent = "import EditorJSHeader from '@editorjs/header';\nwindow.EditorJSHeader = EditorJSHeader;\n".$fContent;
-        file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
-        $this->info("Package added to lseditor.js!");
+        if(str_contains($fContent, "@editorjs/header")){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import EditorJSHeader from '@editorjs/header';\nwindow.EditorJSHeader = EditorJSHeader;\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+        
+
         $this->CopyAndBuild();
 
-        $this->info('Done... Use \'tools\' => [\'header\' => \'EditorJSHeader\'] to add Tool.');
+        $this->info('Done... Use \'tools\' => [\'header\' => \'window.EditorJSHeader\'] to add Tool.');
     }
 }
