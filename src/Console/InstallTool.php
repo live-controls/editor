@@ -209,7 +209,7 @@ class InstallTool extends Command
     {
         //Install NPM Package
         $this->info('Trying to install alert package...');
-        if(shell_exec('npm i @editorjs/alert --save') === null)
+        if(shell_exec('npm i editorjs-alert --save') === null)
         {
             $this->warn("Couldn't install alert package... Please manually install it!");
             return;
@@ -219,10 +219,10 @@ class InstallTool extends Command
         //Include module in lseditor.js file 
         $this->info("Trying to add package to lseditor.js");
         $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
-        if(str_contains($fContent, "@editorjs/alert")){
+        if(str_contains($fContent, "editorjs-alert")){
             $this->warn('Package already imported in lseditor.js file!');
         }else{
-            $fContent = "import EditorJSAlert from '@editorjs/alert';\nwindow.EditorJSAlert = EditorJSAlert;\n".$fContent;
+            $fContent = "import EditorJSAlert from '@editorjs-alert';\nwindow.EditorJSAlert = EditorJSAlert;\n".$fContent;
             file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
             $this->info("Package added to lseditor.js!");
         }
