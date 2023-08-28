@@ -64,7 +64,7 @@ class InstallTool extends Command
         //Include module in lseditor.js file 
         $this->info("Trying to add package to lseditor.js");
         $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
-        $fContent = "const EditorJSParagraph = require('@editorjs/paragraph');\n".$fContent;
+        $fContent = "import EditorJSParagraph from '@editorjs/paragraph';\nwindow.EditorJSParagraph = EditorJSParagraph;\n".$fContent;
         file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
         $this->info("Package added to lseditor.js!");
 
@@ -87,7 +87,7 @@ class InstallTool extends Command
         //Include module in lseditor.js file 
         $this->info("Trying to add package to lseditor.js");
         $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
-        $fContent = "const EditorJSHeader = require('@editorjs/header');\n".$fContent;
+        $fContent = "import EditorJSHeader from '@editorjs/header';\nwindow.EditorJSHeader = EditorJSHeader;\n".$fContent;
         file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
         $this->info("Package added to lseditor.js!");
         $this->CopyAndBuild();
