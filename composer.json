@@ -1,0 +1,34 @@
+{
+    "name": "live-controls/editor",
+    "description": "editor.js implementation for live-controls",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "LiveControls\\Editor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roman Wanner",
+            "email": "60240491+daredloco@users.noreply.github.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LiveControls\\Editor\\EditorServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "npm i @editorjs/editorjs --save"
+        ]
+    },
+    "require": {
+        "livewire/livewire": "^2.12"
+    }
+}
