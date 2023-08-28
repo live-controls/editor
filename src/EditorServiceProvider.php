@@ -30,7 +30,7 @@ class EditorServiceProvider extends ServiceProvider
       if ($this->app->runningInConsole()) {
         $this->commands([
           InstallPackage::class,
-          UninstallPackagee::class,
+          UninstallPackage::class,
       ]);
     }
   }
