@@ -25,7 +25,11 @@ php artisan livecontrols-editor:install;
 php artisan livecontrols-editor:install-tool
 ```
 2) Select option header
-3) Add to livewire call:
+3.a) Add to livewire call:
 ```blade
 @livewire('livecontrols-editor', ['tools' => ['header']])
+```
+3.b) Add to configuration file:
+```
+default_tools => ['header']
 ```
