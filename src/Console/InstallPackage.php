@@ -22,8 +22,29 @@ class InstallPackage extends Command
         $this->info("editorjs/editorjs installed...");
 
         $this->info("Copying lseditor.js to resources/js folder...");
-        copy('../../resources/js/lseditor.js', resource_path('js/lseditor.js'));
+        copy(__DIR__.'/../../resources/js/lseditor.js', resource_path('js/lseditor.js'));
         $this->info("resources/js/lseditor.js created...");
-        $this->warn("Include 'resources/js/app.js' in vite.config.js");
+
+        if($this->ask("Do you want to update your vite.config.js automatically? Back it up first! [y/n]", "n") === "y")
+        {
+            $this->info("Trying to include 'resources/js/lseditor.js' in vite.config.js");
+            $fContent = file_get_contents(base_path('vite.config.js'));
+            if(str_contains($fContent, "resources/js/lseditor.js")){
+                $this->warn("Inclusion of 'resources/js/lseditor.js' already exists inside vite.config.js!");
+            }else{
+                $fContent = str_replace("input: [", "input: [\n'resources/js/lseditor.js',", $fContent);
+                file_put_contents(base_path('vite.config.js'), $fContent);
+                $this->info("'resources/js/lseditor.js' included in vite.config.js");
+                $this->info("Building application... (Running npm run build)");
+                if(shell_exec('npm run build') === null)
+                {
+                    $this->warn("Couldn't build application...");
+                }else{
+                    $this->info("Application built!");
+                }
+            }
+        }else{
+            $this->warn("Include 'resources/js/lseditor.js' in vite.config.js and run 'npm run build'");
+        }
     }
 }
