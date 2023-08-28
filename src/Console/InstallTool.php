@@ -14,6 +14,7 @@ class InstallTool extends Command
     public function handle()
     {
         $userChoice = $this->choice('Which tool do you want to install?', [
+            'other',
             'paragraph',
             'header',
             'quote',
@@ -38,6 +39,12 @@ class InstallTool extends Command
         ]);
 
         switch ($userChoice) {
+            case 'other':
+                $packageName = $this->ask('What is the package name?');
+                $toolName = $this->ask('What is the tool name?');
+                $key = $this->ask('What is the key?');
+                $this->installTool($packageName, $toolName, $key);
+                break;
             case 'paragraph':
                 $this->installParagraph();
                 break;
@@ -109,6 +116,42 @@ class InstallTool extends Command
                 break;
         }
 
+    }
+
+    /**
+     * Installs the tool
+     *
+     * @param string $packageName The name of the package as from 'npm $packageName'
+     * @param string $toolName The name of the tool as from 'import $toolName from $packageName'
+     * @param string $key The key of the tool used in the livewire component
+     * @return void
+     */
+    private function installTool(string $packageName, string $toolName, string $key)
+    {
+        //Install NPM Package
+        $this->info('Trying to install paragraph package...');
+        if(shell_exec('npm i '.$packageName.' --save') === null)
+        {
+            $this->warn("Couldn't install paragraph package... Please manually install it!");
+            return;
+        }
+        $this->info("Paragraph package installed!");
+
+        //Include module in lseditor.js file 
+        $this->info("Trying to add package to lseditor.js");
+        $fContent = file_get_contents(__DIR__.'/../../resources/js/lseditor.js');
+        if(str_contains($fContent, $packageName)){
+            $this->warn('Package already imported in lseditor.js file!');
+        }else{
+            $fContent = "import ".$toolName." from ''.$packageName.'';\nwindow.".$toolName." = ".$toolName.";\n".$fContent;
+            file_put_contents(__DIR__.'/../../resources/js/lseditor.js', $fContent);
+            $this->info("Package added to lseditor.js!");
+        }
+
+
+        $this->CopyAndBuild();
+
+        $this->info('Done... Use \'tools\' => [\''.$key.'\'] to add Tool.');
     }
 
     private function CopyAndBuild()
