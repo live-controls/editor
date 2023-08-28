@@ -8,7 +8,19 @@
                 holder: '{{ $holderId }}',
 
                 @if(!is_null($tools) && is_array($tools))
-                    tools: @js($tools)
+                    tools: {
+                        @if(array_key_exists('paragraph', $tools))
+                            paragraph: EditorJSParagraph
+                        @endif
+                        @if(array_key_exists('header', $tools))
+                            header: {
+                                class: EditorJSHeader,
+                                config: {
+                                    placeholder: 'Enter a header',
+                                }
+                            }
+                        @endif
+                    }
                 @endif
             });
         });
