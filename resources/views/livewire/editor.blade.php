@@ -15,7 +15,7 @@
     </script>
 
     <!-- LiveControls.Editor -->
-    <div class="bg-white rounded rounded-lg">
+    <div class="bg-white rounded-lg">
         <div id="{{ $holderId }}"></div>
         <button class="{{ config('livecontrols_editor.clear_button_style', 'bg-red text-white rounded p-4') }}">Clear</button>
         <button class="{{ config('livecontrols_editor.save_button_style', 'bg-green text-white rounded p-4') }}">Save</button>
