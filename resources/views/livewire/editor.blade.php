@@ -9,10 +9,10 @@
 
                 @if(!is_null($tools) && is_array($tools))
                     tools: {
-                        @if(in_array('paragraph', $tools))
+                        @if(in_array('paragraph', $tools) || in_array('paragraph-with-alignment', $tools))
                             paragraph: EditorJSParagraph,
                         @endif
-                        @if(in_array('header', $tools))
+                        @if(in_array('header', $tools) || in_array('header-with-alignment', $tools) || in_array('header-with-anchor', $tools))
                             header: {
                                 class: EditorJSHeader,
                                 config: {
@@ -31,6 +31,18 @@
                         @endif
                         @if(in_array('alert', $tools))
                             alert: EditorJSAlert,
+                        @endif
+                        @if(in_array('toggle-block', $tools))
+                            toggle: EditorJSToggleBlock,
+                        @endif
+                        @if(in_array('list', $tools))
+                            list: EditorJSList,
+                        @endif
+                        @if(in_array('nested-list', $tools))
+                            list: EditorJSNestedList,
+                        @endif
+                        @if(in_array('checklist', $tools))
+                            checklist: EditorJSChecklist,
                         @endif
                     }
                 @endif
