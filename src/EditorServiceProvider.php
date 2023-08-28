@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
 use LiveControls\Editor\Console\InstallPackage;
+use LiveControls\Editor\Console\InstallTool;
 use LiveControls\Editor\Console\UninstallPackage;
 use LiveControls\Editor\Http\Livewire\Editor;
 
@@ -31,6 +32,7 @@ class EditorServiceProvider extends ServiceProvider
         $this->commands([
           InstallPackage::class,
           UninstallPackage::class,
+          InstallTool::class,
       ]);
     }
   }
