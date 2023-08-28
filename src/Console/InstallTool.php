@@ -16,7 +16,10 @@ class InstallTool extends Command
         $userChoice = $this->choice('Which tool do you want to install?', [
             'paragraph',
             'header',
-
+            'quote',
+            'warning',
+            'delimiter',
+            'alert'
         ]);
 
         switch ($userChoice) {
