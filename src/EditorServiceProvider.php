@@ -5,6 +5,7 @@ namespace LiveControls\Editor;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
+use LiveControls\Editor\Console\InstallPackage;
 use LiveControls\Editor\Http\Livewire\Editor;
 
 class EditorServiceProvider extends ServiceProvider
@@ -24,5 +25,11 @@ class EditorServiceProvider extends ServiceProvider
       $this->publishes([
         __DIR__.'/../config/config.php' => config_path('livecontrols_editor.php'),
       ], 'livecontrols.editor.config');
+
+      if ($this->app->runningInConsole()) {
+        $this->commands([
+            InstallPackage::class,
+      ]);
+    }
   }
 }
