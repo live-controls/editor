@@ -10,7 +10,7 @@
                 @if(!is_null($tools) && is_array($tools))
                     tools: {
                         @if(in_array('paragraph', $tools))
-                            paragraph: EditorJSParagraph
+                            paragraph: EditorJSParagraph,
                         @endif
                         @if(in_array('header', $tools))
                             header: {
@@ -18,7 +18,7 @@
                                 config: {
                                     placeholder: 'Enter a header',
                                 }
-                            }
+                            },
                         @endif
                     }
                 @endif
