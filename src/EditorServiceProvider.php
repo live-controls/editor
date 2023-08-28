@@ -5,6 +5,7 @@ namespace LiveControls\Editor;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
+use LiveControls\Editor\Http\Livewire\Editor;
 
 class EditorServiceProvider extends ServiceProvider
 {
