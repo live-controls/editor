@@ -1,6 +1,8 @@
 # editor
  editor.js implementation for live-controls
 
+**Warning: This package is not usable at the moment!**
+
 # Installation
 1) Run composer:
 ```
