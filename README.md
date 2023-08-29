@@ -18,18 +18,17 @@ php artisan livecontrols-editor:install;
 
 # Usage
 ## Tools
-### Header
-#### Installation
-1) Run in console:
+### Custom Tools
+To add custom tools simply follow those steps:
+1) Call installation tool:
+```ps
+livecontrols-editor:install-tool;
 ```
-php artisan livecontrols-editor:install-tool
+2) Select "other" option
+3.1) Add package name like in "npm i --save **@editorjs/image**"
+3.2) Add unique tool name. This will be saved as a javascript variable as window.TOOL_NAME
+3.3) Add a key for the tool at the end it will look like this:
+```ps
+KEY: TOOL_NAME
 ```
-2) Select option header
-3.a) Add to livewire call:
-```blade
-@livewire('livecontrols-editor', ['tools' => ['header']])
-```
-3.b) Add to configuration file:
-```
-default_tools => ['header']
-```
+Warning: Further options will be added later in development!
