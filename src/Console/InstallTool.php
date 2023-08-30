@@ -150,7 +150,7 @@ class InstallTool extends Command
 
         $this->CopyAndBuild();
 
-        $this->info('Done... Use \'tools\' => [\''.$key.'\' => \''.$toolName.'\'] to add Tool.');
+        $this->info('Done... Use \'tools\' => [\''.$key.'\' => [\'name\' => \''.$toolName.'\']] to add Tool.');
     }
 
     private function CopyAndBuild()
