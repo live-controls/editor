@@ -33,4 +33,24 @@ livecontrols-editor:install-tool;
 ```ps
 KEY: TOOL_NAME
 ```
-Warning: Further options will be added later in development!
+4) Add the tool like this:
+```
+@livewire('livecontrols-editor', ['tools' => ['KEY' => ['name' => 'TOOL_NAME]]])
+
+```
+
+### Custom Tools with additional configuration
+To add custom tools with additional informations, follow this example with carousel-editorjs:
+1) Call installation tool:
+```ps
+livecontrols-editor:install-tool;
+```
+2) Select "other" option
+3) Add package name: carousel-editorjs
+4) Add tool name: EditorJSCarousel
+5) Add key for tool: carousel
+6) Let system install the tool
+7) Add the tool like this:
+```blade
+@livewire('livecontrols-editor', ['tools' => ['carousel' => ['name' => 'EditorJSCarousel', 'custom' => '{class: EditorJSCarousel,config:{ endpoints: {byFile: "URL_FETCH",}}}']]])
+```
