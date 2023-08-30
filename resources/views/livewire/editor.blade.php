@@ -9,8 +9,8 @@
 
                 @if(!is_null($tools) && is_array($tools))
                     tools: {
-                        @foreach($tools as $key => $class)
-                            {{ $key }}: {{ $class }},
+                        @foreach($tools as $key => $classArr)
+                            {{ $key }}: {{ $classArr['name'] }},
                         @endforeach
                     }
                 @endif
