@@ -10,7 +10,7 @@
                 @if(!is_null($tools) && is_array($tools))
                     tools: {
                         @foreach($tools as $key => $classArr)
-                            {{ $key }}: {{ $classArr['name'] }},
+                            {{ $key }}: {{ array_key_exists('custom', $classArr) ? $custom : $classArr['name'] }},
                         @endforeach
                     }
                 @endif
