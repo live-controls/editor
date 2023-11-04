@@ -27,13 +27,13 @@ To add custom tools simply follow those steps:
 livecontrols-editor:install-tool;
 ```
 2) Select "other" option
-3.1) Add package name like in "npm i --save **@editorjs/image**"
-3.2) Add unique tool name. This will be saved as a javascript variable as window.TOOL_NAME
-3.3) Add a key for the tool at the end it will look like this:
+3) Add package name like in "npm i --save **@editorjs/image**"
+4) Add unique tool name. This will be saved as a javascript variable as window.TOOL_NAME
+5) Add a key for the tool at the end it will look like this:
 ```ps
 KEY: TOOL_NAME
 ```
-4) Add the tool like this:
+6) Add the tool like this:
 ```
 @livewire('livecontrols-editor', ['tools' => ['KEY' => ['name' => 'TOOL_NAME]]])
 
