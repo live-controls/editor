@@ -29,6 +29,6 @@
         ]
     },
     "require": {
-        "livewire/livewire": "^2.12"
+        "livewire/livewire": "^3.0"
     }
 }
