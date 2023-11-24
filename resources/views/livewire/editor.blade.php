@@ -6,14 +6,13 @@
                  * Id of Element that should contain Editor instance
                  */
                 holder: '{{ $holderId }}',
-
-                @if(!is_null($tools) && is_array($tools))
-                    tools: {
+                tools: {
+                    @if(!is_null($tools) && is_array($tools))
                         @foreach($tools as $key => $classArr)
-                            {{ $key }}: {{ array_key_exists('custom', $classArr) ? $custom : $classArr['name'] }},
+                                {{ "\n".$key.': '.(array_key_exists('custom', $classArr) ? $custom : $classArr['name']).', '."\n"}}
                         @endforeach
-                    }
-                @endif
+                    @endif
+                }
             });
         });
     </script>
