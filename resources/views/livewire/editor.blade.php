@@ -17,6 +17,10 @@
                 @if(!is_null($defaultBlock))
                     defaultBlock: {{ $defaultBlock }}
                 @endif
+
+                @if(!is_null($oldData) && is_array($oldData))
+                    data: @js($oldData)
+                @endif
             });
         });
     </script>

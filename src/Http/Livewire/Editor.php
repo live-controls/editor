@@ -10,6 +10,8 @@ class Editor extends Component
     public $tools;
     public $defaultBlock;
 
+    public $oldData;
+    
     public function hydrate()
     {
         if(is_null($this->tools)){
