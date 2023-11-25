@@ -13,6 +13,10 @@
                         @endforeach
                     @endif
                 }
+
+                @if(!is_null($defaultBlock))
+                    defaultBlock: {{ $defaultBlock }}
+                @endif
             });
         });
     </script>

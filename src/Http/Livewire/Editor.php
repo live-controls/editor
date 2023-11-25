@@ -8,6 +8,7 @@ class Editor extends Component
 {
     public $holderId = 'editorjs';
     public $tools;
+    public $defaultBlock;
 
     public function hydrate()
     {
